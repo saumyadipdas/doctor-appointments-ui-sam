@@ -29,7 +29,7 @@ export class CreateAppointmentComponent implements OnInit {
 
 
   @ViewChild('createAppointmentForm', { static: true }) public formName!: NgForm;
-  appointmentModelObj : Appointment;
+  appointmentModelObj = new Appointment(null, null, null, null, null, null);
 
   //private spinner: NgxSpinnerService,
   constructor(

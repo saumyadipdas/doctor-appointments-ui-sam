@@ -31,16 +31,13 @@ export class AppComponent {
 
 
       this.httpService.getDoctorList().subscribe((data: any)=>{
+        debugger;
         var doctorListDropdownData = [{}];
         for (var obj in data) {
-          let arrObj = data[obj];
-          for (var key in arrObj) {
-            var attrKey = arrObj[key].userId;
-            ;
-            var attrValue = arrObj[key].userName;
-          }
-          let tempJson = { "key": attrKey, "value": attrValue };
-          doctorListDropdownData.push(tempJson);
+            var attrKey = data[obj].userId;
+            var attrValue = data[obj].userName;
+            let tempJson = { "key": attrKey, "value": attrValue };
+            doctorListDropdownData.push(tempJson);
         }
         console.log("doctorList: "+JSON.stringify(doctorListDropdownData));
         localStorage.setItem("doctorListDropdown", JSON.stringify(doctorListDropdownData));
@@ -58,6 +55,8 @@ export class AppComponent {
 
     logout() {
         //this.authenticationService.logout();
-        this.router.navigate(['/login']);
+        alert("Logging out . . .");
+        localStorage.removeItem('loggedInUser');
+        //this.router.navigate(['/login']);
     }
 }

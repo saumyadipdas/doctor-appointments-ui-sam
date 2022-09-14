@@ -47,6 +47,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthguardService } from './_services/authguard.service';
 //import { MomentDateModule } from '@angular/material-moment-adapter';
 // import {MatToolbarModule} from '@angular/material/toolbar';
 // import {MatTooltipModule} from '@angular/material/tooltip';
@@ -59,7 +61,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     HomeComponent,
     CreateAppointmentComponent,
     ViewAppointmentsComponent,
-    AlertsComponent
+    AlertsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +110,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     // MatTooltipModule,
     // MatTreeModule,
 ],
-  providers: [],
+  providers: [AuthguardService], //@Sam - 15.9.2022
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })

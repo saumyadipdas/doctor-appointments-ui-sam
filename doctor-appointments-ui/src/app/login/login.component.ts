@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 //import { NgxSpinnerService } from 'ngx-spinner';
 import { User } from '../_models/user';
 import { HttpServiceService } from '../_services/http-service.service';
@@ -11,7 +12,8 @@ import { HttpServiceService } from '../_services/http-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(//private spinner: NgxSpinnerService,
+  constructor(//private spinner: NgxSpinnerService, 
+    private router: Router,
     private httpService: HttpServiceService, private _httpClient: HttpClient) { }
 
   username: string;
@@ -22,14 +24,18 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    let authCheckurl = this.httpService.LOGIN_CHECK+"?username="+this.username+"&password="+this.password;
+    let authCheckurl = this.httpService.LOGIN_CHECK+"?userId="+this.username+"&password="+this.password;
       this._httpClient.get(authCheckurl).subscribe(
         {
-        next: (data: any) => {
+        next: (data: User) => {
           //this.showSpinner();
-          console.log("===== getVesselSearchResultsForMatTable====> " + data);
-          localStorage.setItem("loggedInUser",this.username);
+          console.log("===== login ====> " + JSON.stringify(data));
+          localStorage.setItem("loggedInUser",data.userName);
           localStorage.setItem("loggedInUserId",data.userId);
+          setTimeout(() => {
+            this.router.navigate(["/view-appointments/" ]);
+          }, 1000);
+      
           //this.stopSpinner();
           return data;
         },

@@ -1,0 +1,104 @@
+
+.mat-header-cell {
+    align-items: center;
+  
+    width: 100%;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    /* align-items center so that cell content is vertically centered */
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+  
+    text-align: center;
+    display: flex !important;
+    justify-content: center !important; /* center aligned*/
+  
+    font-style: oblique;
+    font-size: 15px;
+  }
+  
+  
+  /* .mat-cell .makeCenterAligned {
+    text-align: center;
+    display: flex !important;
+    justify-content: center !important; /* center aligned /
+  } */
+  
+  mat-cell {
+    display:flex !important;
+    justify-content:center!important;
+    white-space: normal;
+    font-size: smaller;
+  
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+  }
+  
+  /* mat-header-cell {
+    display:flex;
+    justify-content:center;
+  } */
+  
+  
+  .mat-cell button{
+   /* background-color: #e7e7e7; color: black; /* Gray */
+    border-color: black;
+    text-align:center;
+  }
+  
+  
+  /*
+  .mat-cell .flex-stretch {
+    width: 100%;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    /* align-items center so that cell content is vertically centered /
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: x-small;
+    font-family: monospace;
+  }
+  */
+  
+  /* 
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+  
+   .mat-column-name{
+  border-right: 1px solid grey;
+  align-self: stretch;
+  text-align: center
+  
+  
+  }
+  .mat-column-position{
+  border-right: 1px solid grey;
+  align-self: stretch;
+  text-align: center;
+  
+  }
+  .mat-column-weight{
+  border-right: 1px solid grey;
+  align-self: stretch;
+  text-align: center;
+  
+  } 
+  .mat-column-symbol{
+  
+  text-align: center;
+  align-self: stretch;
+  }
+  .mat-column-weight{
+     align-self: stretch;
+  } */

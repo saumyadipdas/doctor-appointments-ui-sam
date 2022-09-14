@@ -24,6 +24,7 @@ export class ViewAppointmentsComponent implements OnInit {
 
     //Server Error Message
   serverErrorMessage: string = null;
+  loggedInUser: string = null;
 
     /***** For Pagination ****/
     resultsLength = 0;
@@ -47,6 +48,8 @@ export class ViewAppointmentsComponent implements OnInit {
       appointmentSearchResultListsDataSource!: MatTableDataSource<Appointment>;//Don't comment! @Sam
 
   ngOnInit(): void {
+
+    this.loggedInUser = localStorage.getItem("loggedInUser");
     this.currentPage = 1;
     this.startIndex = 1;
     this.endIndex = this.startIndex + this.recordsPerPage - 1;
