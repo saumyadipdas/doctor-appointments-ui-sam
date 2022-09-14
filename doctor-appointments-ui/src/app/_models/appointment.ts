@@ -1,10 +1,10 @@
 export class Appointment {
     constructor(
-    appointmentId: string,
-    appointmentTitle: string,
-    appointmentStatus: string,
-    appointmentStartDateTime: string,
-    appointmentEndDateTime: string,
-    responsibleDoctorId: string
+        public appointmentId: string,
+        public appointmentTitle: string,
+        public appointmentStatus: string,
+        public appointmentStartDateTime: string,
+        public appointmentEndDateTime: string,
+        public responsibleDoctorId: string
     ){}
 }

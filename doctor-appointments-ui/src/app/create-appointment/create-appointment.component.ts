@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, Form } from '@angular/forms';
 import { Appointment } from '../_models/appointment';
 import { HttpServiceService } from '../_services/http-service.service';
 //import { NgxSpinnerService } from 'ngx-spinner';
@@ -29,7 +29,7 @@ export class CreateAppointmentComponent implements OnInit {
 
 
   @ViewChild('createAppointmentForm', { static: true }) public formName!: NgForm;
-  appointmentModelObj = new Appointment(null, null, null, null, null, null);
+  appointmentModelObj : Appointment;
 
   //private spinner: NgxSpinnerService,
   constructor(

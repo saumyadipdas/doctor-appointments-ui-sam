@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +12,7 @@ import { CreateAppointmentComponent } from './create-appointment/create-appointm
 import { ViewAppointmentsComponent } from './view-appointments/view-appointments.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxSpinnerModule } from "ngx-spinner";
+//import { NgxSpinnerModule } from "ngx-spinner";
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 // import {MatBadgeModule} from '@angular/material/badge';
@@ -62,11 +63,12 @@ import { MatTabsModule } from '@angular/material/tabs';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgxSpinnerModule,
+    //NgxSpinnerModule,
     //Mat modules
     // MatAutocompleteModule,
     // MatBadgeModule,

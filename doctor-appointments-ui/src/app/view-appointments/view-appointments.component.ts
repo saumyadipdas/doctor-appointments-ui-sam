@@ -39,6 +39,10 @@ export class ViewAppointmentsComponent implements OnInit {
     disablePrevPageBtn: boolean = false;
     disableNextPageBtn: boolean = false;
 
+
+    selection = new SelectionModel<Appointment>(true, []);
+
+
       /*** For Mat Table */
       appointmentSearchResultListsDataSource!: MatTableDataSource<Appointment>;//Don't comment! @Sam
 
@@ -97,6 +101,17 @@ export class ViewAppointmentsComponent implements OnInit {
       }
 
 
+
+
+
+
+      /**
+       * To view the Appointment details
+       */
+      viewIndividualAppointmentData(rowObj: any){
+        console.log(rowObj);
+      }
+
         
   /********** 
    * 
@@ -120,6 +135,113 @@ export class ViewAppointmentsComponent implements OnInit {
 // stopSpinner() {
 //   this.spinner.hide();
 // }
+
+
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.appointmentSearchResultListsDataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.appointmentSearchResultListsDataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  logSelection() {
+    this.selection.selected.forEach(s => console.log(s));
+  }
+
+
+
+
+  /******************************************************
+   * For Custom Paginations
+   * @Start
+   * 
+   ******************************************************/
+
+  /**
+   * On click of Prev Page!
+   */
+   prevPage() {
+
+    if (this.startIndex > 1) {
+      this.endIndex = parseInt(this.startIndex + "") - 1;
+      this.startIndex = parseInt(this.endIndex + "") - parseInt(this.recordsPerPage + "") + 1;
+
+      if (this.startIndex >= 1) {
+        //this.spinner.show(undefined, { fullScreen: true });
+        setTimeout(() => {
+          //this.spinner.hide();
+          this.disablePrevPageBtn = false;
+          this.disableNextPageBtn = false;
+          this.currentPage = parseInt(this.currentPage + "") - 1;
+          this.getAppointmentSearchResultsForMatTable(this.currentPage, this.recordsPerPage);
+        }, 700);
+      }
+      else {
+        this.disablePrevPageBtn = true;
+      }
+    }
+  }
+
+
+  /**
+   * On click of Next Page!
+   */
+  nextPage() {
+
+    if (this.endIndex < this.totalRecords) {
+      this.startIndex = parseInt(this.endIndex + "") + 1;
+      this.endIndex = parseInt(this.endIndex + "") + parseInt(this.recordsPerPage + "");
+
+      if (this.endIndex < this.totalRecords) {
+
+        //this.spinner.show(undefined, { fullScreen: true });
+        setTimeout(() => {
+          //this.spinner.hide();
+          this.disablePrevPageBtn = false;
+          this.disableNextPageBtn = false;
+          this.currentPage = parseInt(this.currentPage + "") + 1;
+          this.getAppointmentSearchResultsForMatTable(this.currentPage, this.recordsPerPage);
+        }, 700);
+      }
+      else {
+        this.disableNextPageBtn = true;
+      }
+    }
+  }
+
+
+
+  /**
+   * On change event of the 'PageSize' change
+   * @param event
+   */
+  onPageSizeChange() {
+    //this.spinner.show(undefined, { fullScreen: true });
+    setTimeout(() => {
+      //this.spinner.hide();
+      this.startIndex = 1;
+      this.endIndex = parseInt(this.startIndex + "") + parseInt(this.recordsPerPage + "") - 1;
+      this.disablePrevPageBtn = true;
+      this.getAppointmentSearchResultsForMatTable( 1, this.recordsPerPage);
+    }, 700);
+  }
+
+
+  /******************************************************
+   * For Custom Paginations
+   * @End
+   * 
+   ******************************************************/
+
+
 
 
 }
