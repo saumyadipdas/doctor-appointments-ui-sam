@@ -1,0 +1,11 @@
+.successCheckMark {
+    text-align: center;
+    color: rgb(16, 124, 70);
+    font-family: "Courier New";
+  }
+
+.error{
+  text-align: center;
+  color: rgb(241, 79, 14);
+  font-family: "Courier New";
+}

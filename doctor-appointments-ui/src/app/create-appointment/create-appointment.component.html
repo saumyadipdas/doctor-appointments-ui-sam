@@ -1,0 +1,117 @@
+<form class="appointment-create-form" #createAppointmentForm="ngForm">
+    <header style="border-bottom:1px solid #11c6cc; border-radius: 3px;">
+        <div class="form-group row" style="border-width: 1px; border-block-color: rgb(14, 128, 194);">
+
+            <!-- {{!vesselFinancialInfoForm.dirty }}{{ !vesselFinancialInfoForm.valid }}
+            {{ isVesselFinancialInfoDataReadOnly }} -->
+
+            <div class="col-9">
+                <h1>Create Appointment</h1>
+            </div>
+
+             <!-------- MESSAGES ------>
+
+            <div *ngIf="saveButtonClickedSuccessMsg">
+                <br />
+                <p class="successCheckMark">✅ Appointment data saved successfully!</p>
+                <br />
+                <p class="successCheckMark" style="font-weight: bold;">{{serverSuccessMessage}}</p>
+            </div>
+            <div *ngIf="serverErrorMessage!==null">
+                <br />
+                <p class="error" style="text-align: center;">{{serverErrorMessage}}</p>
+            </div>
+
+
+            <div class="ml-auto mr-3">
+                <button type="submit" class="btn btn-info form-control headerButton" id="btn2"
+                    [disabled]=" !createAppointmentForm.valid || specialValidationErrors.length>0 "
+                    (click)="submitAppointmentData()">Submit <span *ngIf="ifSubmitBtnClicked">&nbsp;<i
+                            class="fa fa-check-circle ifApplyBtnClickCss"></i></span>
+                </button>
+                <button type="reset" class="btn btn-info form-control headerButton" id="btn1"
+                    (click)="cancelAppointmentData()">Cancel</button>
+            </div>
+
+        </div>
+    </header>
+
+
+
+    <fieldset>
+        <!-- ##################################### Error Messages ############################################################### -->
+        <!-- ERROR MESSAGES. @START-->
+        <div>
+            <div *ngIf="!inputAppointmentId?.valid && (inputAppointmentId?.dirty || inputAppointmentId?.touched)" class="error">
+                <div *ngIf="inputAppointmentId.errors.pattern">
+                    'Appointment Id' requires an integer with length less than or equal to 9.
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ERROR MESSAGES. @END-->
+        <!-- ##################################### Error Messages ############################################################### -->
+        <br />
+
+        <ngx-spinner></ngx-spinner>
+        
+
+        <div class="form-row form-inline">
+            <div class="form-group col-6">
+                <label class="col-5">Appointment Id</label>
+                <input type="number" class="form-control col-6" id="inputAppointmentId" name="inputAppointmentId"
+                    #inputAppointmentId="ngModel" pattern="^[0-9]\d{0,8}?$" title="{{appointmentModelObj.appointmentId}}"
+                    [(ngModel)]="appointmentModelObj.appointmentId">
+            </div>
+            <div class="form-group col-6">
+                <label class="col-5">Appointment Title</label>
+                <input type="text" class="form-control col-6" id="inputAppointmentTitle" name="inputAppointmentTitle"
+                    #inputAppointmentId="ngModel" title="{{appointmentModelObj.appointmentTitle}}"
+                    [(ngModel)]="appointmentModelObj.appointmentTitle">
+            </div>
+        </div>
+        <br />
+
+        <div class="form-row form-inline">
+            <div class="form-group col-6">
+                <label class="col-5">Appointment Status</label>
+                <select id="inputAppointmentStatus" name="inputAppointmentStatus" class="form-control col-6"
+                    #appointmentStatus="ngModel" title="{{appointmentModelObj.appointmentStatus}}"
+                    [(ngModel)]="appointmentModelObj.appointmentStatus">
+                    <option *ngFor="let obj of appointmentstatusDropdown" [value]="obj">{{obj}}</option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label class="col-5">Doctor Name</label>
+                <select id="inputDoctorDetail" name="inputDoctorDetail" class="form-control col-6"
+                    #responsibleDoctorId="ngModel" title="{{appointmentModelObj.responsibleDoctorId}}"
+                    [(ngModel)]="appointmentModelObj.responsibleDoctorId">
+                    <option *ngFor="let obj of doctorListDropdown" [value]="obj.key">{{obj.value}}</option>
+                </select>
+            </div>
+        </div>
+        <br />
+
+        <div class="form-row form-inline">
+            <div class="form-group col-6">
+                <label class="col-5">Appointment Start Date-Time</label>
+                <input type="date" class="form-control col-6" id="inputAppointmentStartDateTime" name="inputAppointmentStartDateTime"
+                    #appointmentStartDateTime="ngModel"
+                    [(ngModel)]="appointmentModelObj.appointmentStartDateTime">
+            </div>
+            <div class="form-group col-6">
+                <label class="col-5">Appointment End Date-Time</label>
+                <input type="date" class="form-control col-6" id="inputAppointmentEndDateTime"
+                    name="inputAppointmentEndDateTime" #appointmentEndDateTime="ngModel"
+                    [(ngModel)]="appointmentModelObj.appointmentEndDateTime">
+            </div>
+        </div>
+        <br />
+
+
+    </fieldset>
+
+    <hr />
+
+</form>

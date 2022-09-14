@@ -1,0 +1,131 @@
+        
+      <ngx-spinner></ngx-spinner>
+
+      <!-- Server Errors-->
+      <div *ngIf="serverErrorMessage!==null" style="white-space: pre-line">
+        <br />
+        <p class="error" style="text-align: center; font-weight: bold;">{{serverErrorMessage}}</p>
+        <br />
+      </div>
+      
+      
+      <!-- Mat table portraying the Vessel Resultset.-->
+        <div>
+            <mat-table [dataSource]="appointmentSearchResultListsDataSource">
+  
+              <!-- Checkbox Column -->
+              <ng-container matColumnDef="select">
+                <mat-header-cell *matHeaderCellDef>
+                  <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+                  </mat-checkbox>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                  <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+                  </mat-checkbox>
+                </mat-cell>
+              </ng-container>
+  
+  
+              <!-- appointment Id Definition -->
+              <ng-container matColumnDef="appointmentId">
+                <mat-header-cell *matHeaderCellDef> Appointment Id </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.appointmentId}} </mat-cell>
+              </ng-container>
+  
+              <!-- appointment Title Definition -->
+              <ng-container matColumnDef="appointmentTitle">
+                <mat-header-cell *matHeaderCellDef> Appointment Title </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.appointmentTitle}} </mat-cell>
+              </ng-container>
+  
+              <!-- appointment Status Definition -->
+              <ng-container matColumnDef="appointmentStatus">
+                <mat-header-cell *matHeaderCellDef> Appointment Status </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.appointmentStatus}} </mat-cell>
+              </ng-container>
+  
+              <!-- appointment Start Date Time  Definition -->
+            <ng-container matColumnDef="appointmentStartDateTime">
+                <mat-header-cell *matHeaderCellDef> Appointment Start Date Time </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.appointmentStartDateTime}} </mat-cell>
+            </ng-container>
+            
+            <!-- appointment End Date Time  Definition -->
+            <ng-container matColumnDef="appointmentEndDateTime">
+                <mat-header-cell *matHeaderCellDef> Appointment End Date Time </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.appointmentEndDateTime}} </mat-cell>
+            </ng-container>
+  
+  
+              <!-- Actions Definition -->
+              <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                  <button mat-button (click)="viewIndividualAppointmentData(row)" class="btn btn-primary btn-right-margin">
+                    View
+                  </button>
+                </mat-cell>
+              </ng-container>
+  
+              <!-- Header and Row Declarations -->
+              <mat-header-row
+                *matHeaderRowDef="['select', 'appointmentId', 'appointmentTitle', 'appointmentStatus', 'appointmentStartDateTime', 'appointmentEndDateTime', 'action']">
+              </mat-header-row>
+              <mat-row
+                *matRowDef="let row; columns: ['select', 'appointmentId', 'appointmentTitle', 'appointmentStatus', 'appointmentStartDateTime', 'appointmentEndDateTime', 'action']">
+              </mat-row>
+            </mat-table>
+  
+  
+            <!-- Paginations -->
+            <!-- <mat-paginator [length]="70" [pageSize]="10" [pageSizeOptions]="[3,5,10]"></mat-paginator> -->
+            <!-- <mat-paginator [length]="searchResultListsDataSource.data?.length" [pageSize]="10" [pageSizeOptions]="[10]"></mat-paginator> -->
+  
+            <br /><br />
+            <!-- Custom Pagination -->
+            <div>
+  
+              <div class="pagination">
+                <button class="buttonLooksLikeHyperlink" (click)="prevPage()" [disabled]="disablePrevPageBtn">
+                  &laquo;Prev
+                </button>
+  
+                <p style="font-family: Garamond;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Showing records {{startIndex}} - {{endIndex}} of {{totalRecords}} records
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  
+                <button class="buttonLooksLikeHyperlink" (click)="nextPage()" [disabled]="disableNextPageBtn">
+                  Next&raquo;
+                </button>
+              </div>
+  
+              <div class="pageSize">
+                <p style="font-family: Garamond;">Show <select name="pageSize" [(ngModel)]="recordsPerPage"
+                    (change)="onPageSizeChange()">
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                  items per page</p>
+              </div>
+  
+            </div> <!-- End of the Pagination -->
+  
+  
+  
+  
+  
+          </div>
+  
+          <br /> <br /><br />
+  
+          <!------  Mat Table Definitions END . . . . . ------->
+  
+  
+  
