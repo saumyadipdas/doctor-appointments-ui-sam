@@ -31,7 +31,6 @@ export class AppComponent {
 
 
       this.httpService.getDoctorList().subscribe((data: any)=>{
-        debugger;
         var doctorListDropdownData = [{}];
         for (var obj in data) {
             var attrKey = data[obj].userId;

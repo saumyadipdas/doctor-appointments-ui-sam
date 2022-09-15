@@ -102,3 +102,11 @@
   .mat-column-weight{
      align-self: stretch;
   } */
+
+
+
+  .form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+  }

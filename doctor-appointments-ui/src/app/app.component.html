@@ -3,7 +3,9 @@
   <div class="navbar-nav">
       <a class="nav-item nav-link" routerLink="/view-appointments">View Appointments</a>
       <a class="nav-item nav-link" routerLink="/create-appointments">Create an Appointment</a>
-      <a class="nav-item nav-link" (click)="logout()">Logout</a>
+      <div style="float: right;">
+      <a class="nav-item nav-link" (click)="logout()" >Logout</a>
+      </div>
   </div>
 </nav>
 <!-- <div *ngIf="currentUser==null">
